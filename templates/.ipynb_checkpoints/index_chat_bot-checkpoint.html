@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <title>ChatBot</title>
+  <head>
+    <link type="image/png" sizes="96x96" rel="shortcut icon" href="../static/icons8-robot-emoji-96.png">
+    <link rel="stylesheet" type="text/css" href= "{{ url_for ('static' , filename = 'style_2.css' ) }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<script>
+var i = 0;
+var txt = "Hi! I'm JimFela your personal ChatBot";
+var speed = 75 ;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+
+
+  <body onload="typeWriter()">
+    
+    <center>
+      <h1>
+        <img
+          src="../static/icons8-robot-emoji-96.png"
+          alt="ChatBot-icon"
+          style="width:40px;height:40px;"
+        />Your Personal ChatBot<img
+          src="../static/icons8-robot-emoji-96.png"
+          alt="ChatBot-icon"
+          style="width:40px;height:40px;"
+        />
+      </h1>
+
+       <form method = 'get' action = '/'>
+         <button class= "button_home button5" > Home Page </button>
+       </form>
+
+    </center>
+
+<div class="box"></div>
+    <div class="boxed">
+      <div>
+        <div id="chatbox">
+          <img
+            src="../static/icons8-flute-96.png"
+            alt="Flute"
+            style="width:40px;height:40px;"
+          />
+          <p class="botText">
+            <span id = "demo"></span>
+          </p>
+        </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder="Enter your question" />
+        </div>
+      </div>
+      <script>
+        var user_input = $("#textInput").val(); 
+        var chat_bot_response = "" ;
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          user_input = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+
+          $.get("/get" , { msg: rawText }).done(function(data) {
+            chat_bot_response = data ; 
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+
+          var check_res = '<label for="is_it_ok" class="confirm">' + 'Is that response match your question ? ' + '</label>' ;
+          $("#chatbox").append(check_res);
+          document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+
+    
+          var check_res_1 = '<input type="radio" id="yes" name="is_ok" value="yes">' + '<label for="yes">YES</label>' + '<input type="radio" id="no" name="is_ok" value="no">' + '<label for="no">NO</label><br>'
+
+
+          $("#chatbox").append(check_res_1);
+          document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+          var button = '<br>' + '<button type="button" onclick="displayRadioValue()">' + 'Submit' + '</button>' + '<br>'
+          $("#chatbox").append(button);
+          document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+          });          
+        }
+          function displayRadioValue() 
+        {
+            var ele = document.getElementsByName('is_ok');
+            for( i = 0 ; i < ele.length; i++) {
+                if(ele[i].checked){
+                  console.log(ele[i].value);
+                  console.log(user_input);
+                  console.log(chat_bot_response);
+                  $.get("/get_user_response" , { is_ok : ele[i].value  
+                    , user_question : user_input 
+                    , bot_answer : chat_bot_response }).done(function(data) {
+                      console.log("Done");
+          });
+                }
+            }
+             var done = '<p class="confirm">Thanks,your feedback recorded successfully.</p>'
+             $("#chatbox").append(done);
+             document.getElementById("userInput").scrollIntoView({ block: "start", behavior: "smooth" });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+</script>
+    </div>
+  </body>
+</html>

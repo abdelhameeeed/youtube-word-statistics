@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+  <!-- <link type="image/png" sizes="96x96" rel="shortcut icon" href="../static/icons8-musical-notes-96.png">
+   -->
+   <link rel="stylesheet" type="text/css" href= "{{ url_for ('static' , filename = 'style.css' ) }}">
+ </head>
+<body>
+
+  <div class="container">
+
+  <form  action="/word_count">
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="fname">Youtube-Video-Url</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="fname" name="url" placeholder= {{url}} value = {{url}}>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Word</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="lname" name="word" placeholder= {{word}} value = {{word}}>
+      </div>
+    </div>
+
+
+     <p> <label for="lname">Word Count</label> : {{ word_count }}</p>
+     <p> <label for="lname">Percentage of appearance of this Word among all words</label> : {{ percentage }}</p>
+     <p> <label for="lname"> One of the random subtitles that contains this word</label> : {{ random_sentence }}</p>
+
+
+    <!-- 
+          $.get("/get" , { msg: rawText }).done(function(data) {
+            chat_bot_response = data ; 
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>"; -->
+
+    <br>
+
+    <div class="row">
+      <input type="submit" value="Search">
+    </div>
+  </form>
+
+</div>
+
+</body>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <link type="image/png" sizes="96x96" rel="shortcut icon" href="../static/icons8-musical-notes-96.png">
+   <link rel="stylesheet" type="text/css" href= "{{ url_for ('static' , filename = 'style.css' ) }}">
+ </head>
+
+
+<script>
+var i = 0;
+var txt = 'Welcome,To get assistance from our Chatbot please click the button below';
+var speed = 75 ;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("demo").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+
+
+<body onload="typeWriter()">
+<div class = 'img'>
+</div>
+
+<div class = 'smtxt'>
+<p id="demo"></p>
+      <div>
+        <form method="GET" action="/chat_bot">  
+      <button type="submit" class="button button5">ChatBot</button>
+     </form>    
+      </div> 
+</div>
+</body>
+
+
