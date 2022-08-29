@@ -12,9 +12,9 @@
 tools used tom implement that project.
 
 - [PYTHON]
-- [HTML] - awesome web-based text editor
-- [CSS] - Markdown parser done right. Fast and easy to extend.
-- [FLASK] - great UI boilerplate for modern web apps
-- [Restful apis] - evented I/O for the backend
+- [HTML] 
+- [CSS] 
+- [FLASK] 
+- [Restful apis]
 
 
