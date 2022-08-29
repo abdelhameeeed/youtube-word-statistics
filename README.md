@@ -9,7 +9,7 @@
 
 ## Tech
 
-tools used tom implement that project.
+Tools used tom implement that project.
 
 - [PYTHON]
 - [HTML] 
