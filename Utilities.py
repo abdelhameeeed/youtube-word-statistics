@@ -54,35 +54,35 @@ class youtube_url_stats:
         
         return lines[random.choice(range(0, len(lines)))].strip()
 
-#     def most_least_frequent_words(self):
+    def most_least_frequent_words(self):
         
-#         lines = [  i['text'] for i in self.subtitles ]
-#         #Stop words.
-#         stop_words = set(stopwords.words('english'))
-#         stop_words.add('na')
-#         stop_words.add('gon')
-#         stop_words.add('youre')
-#         stop_words.add('im')
-#         stop_words.add('dont')
-#         stop_words.add('got')
-#         stop_words.add('go')
-#         stop_words.add('thats')
-#         # remove punctuation 
-#         lines = [ line.translate(str.maketrans( '' , '' , string.punctuation) )  for line in lines ]
-#         # generate tokens
-#         nltk_tokens = [ nltk.word_tokenize(line) for line in lines ]
-#         # change to lowercase and remove stop words.
-#         nltk_tokens_filtered = [ word for line in nltk_tokens for word in line if not word.lower() in stop_words ]
-#         frequency = Counter( nltk_tokens_filtered )
-#         return frequency.most_common(5),list(reversed(frequency.most_common()))[0:5]
+        lines = [  i['text'] for i in self.subtitles ]
+        #Stop words.
+        stop_words = set(stopwords.words('english'))
+        stop_words.add('na')
+        stop_words.add('gon')
+        stop_words.add('youre')
+        stop_words.add('im')
+        stop_words.add('dont')
+        stop_words.add('got')
+        stop_words.add('go')
+        stop_words.add('thats')
+        # remove punctuation 
+        lines = [ line.translate(str.maketrans( '' , '' , string.punctuation) )  for line in lines ]
+        # generate tokens
+        nltk_tokens = [ nltk.word_tokenize(line) for line in lines ]
+        # change to lowercase and remove stop words.
+        nltk_tokens_filtered = [ word for line in nltk_tokens for word in line if not word.lower() in stop_words ]
+        frequency = Counter( nltk_tokens_filtered )
+        return frequency.most_common(5),list(reversed(frequency.most_common()))[0:5]
     
-#     def some_stats(self):
+    def some_stats(self):
         
-#         """
-#         returns more info about the video.
-#         """
-#         video = pafy.new(self.url)
-#         return video 
+        """
+        returns more info about the video.
+        """
+        video = pafy.new(self.url)
+        return video 
         
 
 
