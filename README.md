@@ -22,9 +22,10 @@ tools used tom implement that project.
 
 How to launch the project locally.
 ```sh
-git clone 
-npm i
-node app
+git clone https://github.com/abdelhameeeed/youtube-word-statistics.git
+cd project
+pip install -r requirements.txt
+python app.py
 ```
 
 
