@@ -18,3 +18,13 @@ tools used tom implement that project.
 - [Restful apis]
 
 
+## Installation
+
+How to launch the project locally.
+```sh
+git clone 
+npm i
+node app
+```
+
+
